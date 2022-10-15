@@ -72,15 +72,17 @@ function loadingImages(page, value) {
     const pagesValue = Math.ceil(data.totalHits / ITEMS_PER_PAGE);
 
     if (data.totalHits === 0 && page === 1) {
-      Notify.info(
+      Notify.failure(
         `Sorry, there are no images matching your search query. Please try again.`
       );
     }
     if (data.totalHits > 0 && page === 1) {
-      Notify.info(`Hooray! We found ${data.totalHits} images.`);
+      Notify.success(`Hooray! We found ${data.totalHits} images.`);
     }
     if (pagesValue > 0 && page === pagesValue) {
-      Notify.info(`We're sorry, but you've reached the end of search results.`);
+      Notify.failure(
+        `We're sorry, but you've reached the end of search results.`
+      );
     }
 
     renderGalleryList(data.hits);
