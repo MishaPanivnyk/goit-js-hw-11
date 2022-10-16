@@ -24,6 +24,10 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   loadMoreBtn: document.querySelector('.load-more'),
 };
+const lightBox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 initSwitchBtn();
 refs.form.addEventListener('submit', onSubmitForm);
@@ -154,11 +158,7 @@ function removeMoreEvent(onEvent) {
 function renderGalleryList(images) {
   const templates = images.map(img => photoCardTemplate(img)).join('');
   refs.gallery.insertAdjacentHTML('beforeend', templates);
-  if (gallery) {
-    gallery.refresh();
-  } else {
-    gallery = new SimpleLightbox('.gallery a');
-  }
+  lightBox.refresh();
 }
 
 function removeChildren(el) {
